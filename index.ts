@@ -7,7 +7,7 @@ import {MineMessageParams, Queries} from "./src/giver/NftGiver.data";
 
 async function main () {
 
-    const wallet = Address.parse('EQD9gM0AYfDMnlcMFK1Y5gRBfK6Cdyp4vv1u1xVMzM3pE5Gr');
+    const wallet = Address.parse('kQD9gM0AYfDMnlcMFK1Y5gRBfK6Cdyp4vv1u1xVMzM3pEyoh');
     const collection = Address.parse('EQDk8N7xM5D669LC2YACrseBJtDyFqwtSPCNhRWXU7kjEptX');
 
     const client = new TonClient({
@@ -86,6 +86,14 @@ async function main () {
 
     console.log('🚀 Link to receive an NFT:')
     console.log(link);
+
+    const qrcode = require('qrcode-terminal');
+
+    qrcode.generate(link, {small: true}, function (qrcode : any) {
+        console.log('🚀 Link to mine your NFT (use Tonkeeper in testnet mode):')
+        console.log(qrcode);
+        console.log('* If QR is still too big, please run script from the terminal. (or make the font smaller)')
+    });
 }
 
 main()
